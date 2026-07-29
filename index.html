@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BRANDIT LAGOS | Official Store & Manufacturing Hub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #0b0b0b;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(11, 11, 11, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid #222;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand-logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: #fff;
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        .brand-logo span {
+            color: #ff3333;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #aaa;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-socials {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .nav-socials a {
+            color: #fff;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+
+        .nav-socials a:hover {
+            color: #ff3333;
+        }
+
+        .nav-socials a.whatsapp-icon:hover {
+            color: #25d366;
+        }
+
+        .btn-direct-wa {
+            background: #25d366;
+            color: #fff;
+            padding: 8px 18px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 13px;
+            letter-spacing: 1px;
+            transition: background 0.3s;
+        }
+
+        .btn-direct-wa:hover {
+            background: #1ebe5d;
+        }
+
+        /* Hero Section */
+        .khaore-hero {
+            position: relative;
+            width: 100%;
+            height: 80vh;
+            margin-top: 60px;
+            overflow: hidden;
+        }
+
+        .hero-slideshow {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .hero-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .hero-slide.active {
+            opacity: 1;
+        }
+
+        .hero-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-caption {
+            position: absolute;
+            bottom: 50px;
+            left: 50px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px 30px;
+            border-left: 4px solid #ff3333;
+        }
+
+        .caption-tag {
+            font-size: 11px;
+            letter-spacing: 2px;
+            color: #ff3333;
+            font-weight: 700;
+        }
+
+        .hero-caption h2 {
+            font-size: 28px;
+            margin-top: 5px;
+            color: #fff;
+        }
+
+        .hero-indicators {
+            position: absolute;
+            bottom: 20px;
+            right: 50px;
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .ind-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .ind-dot.active {
+            background: #ff3333;
+        }
+
+        /* Wholesale Bar */
+        .wholesale-bar {
+            background: #ff3333;
+            color: #fff;
+            text-align: center;
+            padding: 15px 20px;
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+
+        .wholesale-bar a {
+            color: #fff;
+            text-decoration: underline;
+            margin-left: 10px;
+        }
+
+        /* Produce Section */
+        .produce-section {
+            padding: 60px 20px;
+            background: #111;
+        }
+
+        .produce-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .services-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .section-tag {
+            color: #888;
+            font-size: 12px;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        .services-header h2 {
+            font-size: 26px;
+            margin-top: 5px;
+            color: #fff;
+        }
+
+        .services-header p {
+            color: #aaa;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .produce-slider-frame {
+            position: relative;
+            width: 100%;
+            height: 75vh;
+            background: #000;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #222;
+        }
+
+        .produce-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .produce-slide.active {
+            opacity: 1;
+        }
+
+        .produce-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .produce-nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.6);
+            color: #fff;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+
+        .produce-nav-btn:hover {
+            background: #ff3333;
+        }
+
+        .prev-btn { left: 20px; }
+        .next-btn { right: 20px; }
+
+        .produce-dots {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 10;
+        }
+
+        .produce-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            cursor: pointer;
+        }
+
+        .produce-dot.active {
+            background: #ff3333;
+        }
+
+        /* Why Trust Us & Offers Section */
+        .trust-section {
+            padding: 80px 20px;
+            background: #141414;
+            border-top: 1px solid #222;
+            border-bottom: 1px solid #222;
+        }
+
+        .trust-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        @media (max-width: 900px) {
+            .trust-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .trust-box h3 {
+            font-size: 22px;
+            color: #fff;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            border-left: 3px solid #ff3333;
+            padding-left: 15px;
+        }
+
+        .offer-list, .trust-list {
+            list-style: none;
+        }
+
+        .offer-list li, .trust-list li {
+            background: #1b1b1b;
+            margin-bottom: 12px;
+            padding: 15px 20px;
+            border-radius: 6px;
+            font-size: 15px;
+            border: 1px solid #262626;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .offer-list li i {
+            color: #ff3333;
+        }
+
+        .trust-list li i {
+            color: #25d366;
+        }
+
+        /* Main Catalog / Product Grid */
+        .main-catalog {
+            padding: 60px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .khaore-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .khaore-card {
+            background: #141414;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #222;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s ease, border-color 0.2s;
+        }
+
+        .khaore-card:hover {
+            transform: translateY(-5px);
+            border-color: #ff3333;
+        }
+
+        .khaore-img-wrap {
+            width: 100%;
+            aspect-ratio: 1/1;
+            overflow: hidden;
+            background: #000;
+            cursor: pointer;
+        }
+
+        .khaore-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s;
+        }
+
+        .khaore-card:hover .khaore-img-wrap img {
+            transform: scale(1.05);
+        }
+
+        .product-card-info {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            justify-content: space-between;
+        }
+
+        .product-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 5px;
+        }
+
+        .product-moq {
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 15px;
+        }
+
+        .product-footer-row {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            margin-top: auto;
+            border-top: 1px solid #222;
+            padding-top: 15px;
+        }
+
+        .btn-card-wa {
+            background: #25d366;
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .btn-card-wa:hover {
+            background: #1ebe5d;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: #151515;
+            border: 1px solid #333;
+            border-radius: 8px;
+            max-width: 600px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 30px;
+            color: #fff;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .modal-body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-img-wrap {
+            width: 100%;
+            max-height: 400px;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-img-wrap img {
+            max-width: 100%;
+            max-height: 400px;
+            object-fit: contain;
+        }
+
+        .modal-info {
+            padding: 25px;
+            text-align: center;
+        }
+
+        .modal-info h3 {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+
+        .modal-desc {
+            color: #aaa;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .modal-btn {
+            display: inline-block;
+            background: #25d366;
+            color: #fff;
+            padding: 12px 25px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 700;
+            letter-spacing: 1px;
+            transition: background 0.3s;
+        }
+
+        .modal-btn:hover {
+            background: #1ebe5d;
+        }
+
+        /* Footer */
+        .footer {
+            background: #000;
+            border-top: 1px solid #222;
+            padding: 60px 20px 30px;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 30px;
+        }
+
+        .footer-brand h3 {
+            font-size: 22px;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .footer-brand p {
+            color: #888;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .footer-social-block h4 {
+            font-size: 13px;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            color: #aaa;
+        }
+
+        .footer-social-links {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 4px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .social-btn.instagram { background: #e1306c; }
+        .social-btn.tiktok { background: #000; border: 1px solid #333; }
+        .social-btn.whatsapp { background: #25d366; }
+
+        .footer-copy {
+            border-top: 1px solid #1a1a1a;
+            width: 100%;
+            padding-top: 20px;
+            color: #555;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="#" class="brand-logo">BRANDIT<span>.</span></a>
+            <nav class="nav-links">
+                <a href="#services">WHAT WE PRODUCE</a>
+                <a href="#trust">WHY TRUST US</a>
+                <a href="#catalog">GALLERY</a>
+                <a href="#b2b">WHOLESALE</a>
+            </nav>
+            <div class="nav-actions">
+                <div class="nav-socials">
+                    <a href="https://instagram.com/@brandit.marketplace" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://tiktok.com/@brandit.marketplace" target="_blank" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="https://wa.me/2349165920402" target="_blank" aria-label="WhatsApp" class="whatsapp-icon"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+                <a href="https://wa.me/2349165920402" class="btn-direct-wa" target="_blank">ORDER NOW</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="khaore-hero">
+        <div class="hero-slideshow" id="hero-slideshow">
+            <div class="hero-slide active">
+                <img src="hero4.jpg" alt="Acid Wash Collection">
+                <div class="hero-caption">
+                    <span class="caption-tag">NEW DROP</span>
+                    <h2>ACID WASH COLLECTION</h2>
+                </div>
+            </div>
+            <div class="hero-slide">
+                <img src="hero8.jpg" alt="Flared Denim and Jorts">
+                <div class="hero-caption">
+                    <span class="caption-tag">FACTORY DIRECT</span>
+                    <h2>FLARED DENIM & JORTS</h2>
+                </div>
+            </div>
+            <div class="hero-slide">
+                <img src="hero5.jpg" alt="Streetwear Blanks">
+                <div class="hero-caption">
+                    <span class="caption-tag">HEAVYWEIGHT TERRY</span>
+                    <h2>STREETWEAR BLANKS</h2>
+                </div>
+            </div>
+            <div class="hero-slide">
+                <img src="hero9.jpg" alt="Custom Trucker Caps">
+                <div class="hero-caption">
+                    <span class="caption-tag">HEADWEAR HUB</span>
+                    <h2>CUSTOM TRUCKER CAPS</h2>
+                </div>
+            </div>
+        </div>
+        <div class="hero-indicators">
+            <span class="ind-dot active" onclick="goToHeroSlide(0)"></span>
+            <span class="ind-dot" onclick="goToHeroSlide(1)"></span>
+            <span class="ind-dot" onclick="goToHeroSlide(2)"></span>
+            <span class="ind-dot" onclick="goToHeroSlide(3)"></span>
+        </div>
+    </section>
+
+    <section id="b2b" class="wholesale-bar">
+        <p>MANUFACTURING FOR OVER 300+ BRANDS AT 32 WESTERN AVE, OJUELEGBA • <a href="https://wa.me/2349165920402?text=Hi%20Brandit,%20I'm%20interested%20in%20bulk%20custom%20manufacturing" target="_blank">INQUIRE BULK PRODUCTION</a></p>
+    </section>
+
+    <section id="services" class="produce-section">
+        <div class="produce-container">
+            <div class="services-header">
+                <span class="section-tag">FACTORY CAPABILITIES</span>
+                <h2>WHAT BRANDIT CAN PRODUCE FOR YOUR BRAND</h2>
+                <p>Slide through our production capabilities direct from Ojuelegba.</p>
+            </div>
+            <div class="produce-slider-frame">
+                <div class="produce-slide active"><img src="hero12.jpg" alt="Capability 1"></div>
+                <div class="produce-slide"><img src="hero13.jpg" alt="Capability 2"></div>
+                <div class="produce-slide"><img src="hero14.jpg" alt="Capability 3"></div>
+                <div class="produce-slide"><img src="hero15.jpg" alt="Capability 4"></div>
+                <div class="produce-slide"><img src="hero16.jpg" alt="Capability 5"></div>
+
+                <button class="produce-nav-btn prev-btn" onclick="changeProduceSlide(-1)" aria-label="Previous"><i class="fa-solid fa-chevron-left"></i></button>
+                <button class="produce-nav-btn next-btn" onclick="changeProduceSlide(1)" aria-label="Next"><i class="fa-solid fa-chevron-right"></i></button>
+
+                <div class="produce-dots">
+                    <span class="produce-dot active" onclick="goToProduceSlide(0)"></span>
+                    <span class="produce-dot" onclick="goToProduceSlide(1)"></span>
+                    <span class="produce-dot" onclick="goToProduceSlide(2)"></span>
+                    <span class="produce-dot" onclick="goToProduceSlide(3)"></span>
+                    <span class="produce-dot" onclick="goToProduceSlide(4)"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="trust" class="trust-section">
+        <div class="trust-container">
+            <div class="trust-box">
+                <h3>WHAT WE OFFER</h3>
+                <ul class="offer-list">
+                    <li><i class="fa-solid fa-check"></i> High-quality Plain & Acid Wash T-Shirts</li>
+                    <li><i class="fa-solid fa-check"></i> Custom Face Caps, Baseball & Trucker Hats</li>
+                    <li><i class="fa-solid fa-check"></i> Premium Denim Long Pants, Jorts & Shorts</li>
+                    <li><i class="fa-solid fa-check"></i> Custom Made Slides & Branded Socks</li>
+                    <li><i class="fa-solid fa-check"></i> Gym Wears, Tank Tops & Jersey Samples</li>
+                </ul>
+            </div>
+            <div class="trust-box">
+                <h3>WHY YOU SHOULD TRUST US</h3>
+                <ul class="trust-list">
+                    <li><i class="fa-solid fa-shield-halved"></i> Trusted manufacturing partner for over 300+ clothing brands</li>
+                    <li><i class="fa-solid fa-location-dot"></i> Physical office & factory located right at 32 Western Ave, Ojuelegba, Lagos</li>
+                    <li><i class="fa-solid fa-bolt"></i> Direct factory production ensuring top-tier clothing quality and standards</li>
+                    <li><i class="fa-solid fa-headset"></i> Reliable customer support and direct communication through WhatsApp</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <main id="catalog" class="main-catalog">
+        <div class="services-header" style="text-align: center; margin-bottom: 30px;">
+            <span class="section-tag" style="color: #888; font-size: 12px; letter-spacing: 2px;">
+        </div>
+        <div id="product-grid" class="khaore-grid"></div>
+    </main>
+
+    <div id="product-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <div class="modal-body">
+                <div class="modal-img-wrap">
+                    <img id="modal-img" src="" alt="Product Detail">
+                </div>
+                <div class="modal-info">
+                    <h3 id="modal-title">BRANDIT LAGOS</h3>
+                    <p id="modal-moq" class="modal-desc"></p>
+                    <a id="modal-wa-btn" href="#" target="_blank" class="modal-btn"><i class="fa-brands fa-whatsapp"></i> ORDER VIA WHATSAPP</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer id="about" class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <h3>BRANDIT LAGOS</h3>
+                <p>32 Western Avenue, Ojuelegba, Lagos, Nigeria.</p>
+                <p>Bulk Manufacturing & Streetwear Hub</p>
+            </div>
+            <div class="footer-social-block">
+                <h4>FOLLOW US ON SOCIALS</h4>
+                <div class="footer-social-links">
+                    <a href="https://instagram.com/@brandit.marketplace" target="_blank" class="social-btn instagram"><i class="fa-brands fa-instagram"></i> Instagram</a>
+                    <a href="https://tiktok.com/@brandit.marketplace" target="_blank" class="social-btn tiktok"><i class="fa-brands fa-tiktok"></i> TikTok</a>
+                    <a href="https://wa.me/2349165920402" target="_blank" class="social-btn whatsapp"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+                </div>
+            </div>
+            <div class="footer-copy">
+                <p>&copy; 2026 BRANDIT MARKETPLACE. ALL RIGHTS RESERVED.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="products.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            initHeroSlider();
+            initProduceSlider();
+            initProductGrid();
+        });
+
+        // HERO SLIDESHOW
+        let currentHeroSlide = 0;
+        function initHeroSlider() {
+            const slides = document.querySelectorAll('.hero-slide');
+            const dots = document.querySelectorAll('.ind-dot');
+            if (slides.length === 0) return;
+
+            setInterval(() => {
+                slides[currentHeroSlide].classList.remove('active');
+                dots[currentHeroSlide].classList.remove('active');
+                currentHeroSlide = (currentHeroSlide + 1) % slides.length;
+                slides[currentHeroSlide].classList.add('active');
+                dots[currentHeroSlide].classList.add('active');
+            }, 4000);
+        }
+
+        function goToHeroSlide(index) {
+            const slides = document.querySelectorAll('.hero-slide');
+            const dots = document.querySelectorAll('.ind-dot');
+            if (slides.length === 0) return;
+
+            slides[currentHeroSlide].classList.remove('active');
+            dots[currentHeroSlide].classList.remove('active');
+            currentHeroSlide = index;
+            slides[currentHeroSlide].classList.add('active');
+            dots[currentHeroSlide].classList.add('active');
+        }
+
+        // PRODUCE SLIDER
+        let currentProduceSlide = 0;
+        function initProduceSlider() {
+            const slides = document.querySelectorAll('.produce-slide');
+            const dots = document.querySelectorAll('.produce-dot');
+            if (slides.length === 0) return;
+
+            window.changeProduceSlide = function(direction) {
+                slides[currentProduceSlide].classList.remove('active');
+                if (dots.length > 0) dots[currentProduceSlide].classList.remove('active');
+
+                currentProduceSlide = (currentProduceSlide + direction + slides.length) % slides.length;
+
+                slides[currentProduceSlide].classList.add('active');
+                if (dots.length > 0) dots[currentProduceSlide].classList.add('active');
+            };
+
+            window.goToProduceSlide = function(index) {
+                slides[currentProduceSlide].classList.remove('active');
+                if (dots.length > 0) dots[currentProduceSlide].classList.remove('active');
+
+                currentProduceSlide = index;
+
+                slides[currentProduceSlide].classList.add('active');
+                if (dots.length > 0) dots[currentProduceSlide].classList.add('active');
+            };
+        }
+
+        // RENDER PRODUCTS GRID WITH NAMES & DIRECT WHATSAPP BUTTONS (NO PRICES)
+        function initProductGrid() {
+            const grid = document.getElementById("product-grid");
+            if (!grid) return;
+            
+            if (typeof branditProducts === "undefined") {
+                console.error("branditProducts is not defined. Check if products.js is loaded correctly.");
+                return;
+            }
+
+            grid.innerHTML = "";
+
+            branditProducts.forEach(product => {
+                const card = document.createElement("div");
+                card.className = "khaore-card";
+
+                const encodedMessage = encodeURIComponent(`Hi Brandit Lagos, I'm interested in ordering: *${product.name}* (${product.moq})`);
+                const whatsappLink = `https://wa.me/2349165920402?text=${encodedMessage}`;
+
+                card.innerHTML = `
+                    <div class="khaore-img-wrap">
+                        <img src="${product.image}" alt="${product.name}" loading="lazy">
+                    </div>
+                    <div class="product-card-info">
+                        <div>
+                            <h4 class="product-title">${product.name}</h4>
+                            <p class="product-moq">${product.moq}</p>
+                        </div>
+                        <div class="product-footer-row">
+                            <a href="${whatsappLink}" target="_blank" class="btn-card-wa"><i class="fa-brands fa-whatsapp"></i> Order on WhatsApp</a>
+                        </div>
+                    </div>
+                `;
+
+                card.querySelector('.khaore-img-wrap').addEventListener("click", () => {
+                    openModal(product);
+                });
+
+                grid.appendChild(card);
+            });
+        }
+
+        // MODAL & WHATSAPP
+        function openModal(product) {
+            const modal = document.getElementById("product-modal");
+            const modalImg = document.getElementById("modal-img");
+            const modalTitle = document.getElementById("modal-title");
+            const modalMoq = document.getElementById("modal-moq");
+            const waBtn = document.getElementById("modal-wa-btn");
+
+            if (!modal) return;
+
+            modalImg.src = product.image;
+            modalTitle.textContent = product.name;
+            modalMoq.textContent = product.moq;
+            modal.style.display = "flex";
+
+            const encodedMessage = encodeURIComponent(`Hi Brandit Lagos, I'm interested in ordering: *${product.name}* (${product.moq})`);
+            waBtn.href = `https://wa.me/2349165920402?text=${encodedMessage}`;
+        }
+
+        function closeModal() {
+            const modal = document.getElementById("product-modal");
+            if (modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        window.addEventListener("click", (event) => {
+            const modal = document.getElementById("product-modal");
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
