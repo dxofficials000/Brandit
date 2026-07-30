@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BRANDIT LAGOS | Official Store & Manufacturing Hub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #0b0b0b;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(11, 11, 11, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid #222;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand-logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: #fff;
+            text-decoration: none;
+            letter-spacing: 2px;
+            cursor: pointer;
+        }
+
+        .brand-logo span {
+            color: #ff3333;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #aaa;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover, .nav-links a.active-link {
+            color: #fff;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-socials {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .nav-socials a {
+            color: #fff;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+
+        .nav-socials a:hover {
+            color: #ff3333;
+        }
+
+        .nav-socials a.whatsapp-icon:hover {
+            color: #25d366;
+        }
+
+        .btn-direct-wa {
+            background: #25d366;
+            color: #fff;
+            padding: 8px 18px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 13px;
+            letter-spacing: 1px;
+            transition: background 0.3s;
+        }
+
+        .btn-direct-wa:hover {
+            background: #1ebe5d;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 900px) {
+            .nav-links {
+                display: none;
+            }
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+
+        /* Fullscreen Mobile Menu Overlay */
+        .khaore-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(11, 11, 11, 0.98);
+            z-index: 2500;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 40px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .khaore-menu-overlay.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .khaore-menu-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .khaore-menu-close {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 32px;
+            cursor: pointer;
+        }
+
+        .khaore-menu-links {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            max-width: 600px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .khaore-menu-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #222;
+            padding-bottom: 15px;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        .khaore-menu-links a:hover {
+            color: #ff3333;
+        }
+
+        .khaore-menu-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #888;
+            font-size: 14px;
+        }
+
+        /* PAGE VIEWS CONTAINER */
+        .page-view {
+            display: none;
+            min-height: 100vh;
+            padding-top: 80px;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        .page-view.active-page {
+            display: flex;
+            flex-direction: column;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* HOME PAGE STYLES */
+        .home-container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        /* 1. First: Four Constant Changing Pictures Slideshow */
+        .khaore-hero {
+            position: relative;
+            width: 100%;
+            height: 85vh;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .hero-slideshow {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .hero-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .hero-slide.active {
+            opacity: 1;
+        }
+
+        .hero-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-caption {
+            position: absolute;
+            bottom: 60px;
+            left: 60px;
+            background: rgba(0, 0, 0, 0.75);
+            padding: 25px 35px;
+            border-left: 4px solid #ff3333;
+            max-width: 600px;
+        }
+
+        .caption-tag {
+            font-size: 11px;
+            letter-spacing: 2px;
+            color: #ff3333;
+            font-weight: 700;
+        }
+
+        .hero-caption h2 {
+            font-size: 28px;
+            margin-top: 5px;
+            color: #fff;
+        }
+
+        .hero-indicators {
+            position: absolute;
+            bottom: 30px;
+            right: 60px;
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .ind-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .ind-dot.active {
+            background: #ff3333;
+        }
+
+        /* 2. Second: Slide Row */
+        .five-slide-section {
+            padding: 80px 20px;
+            background: #090909;
+            border-bottom: 1px solid #1a1a1a;
+        }
+
+        .five-slide-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header-box {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-tag {
+            color: #ff3333;
+            font-size: 12px;
+            letter-spacing: 2px;
+            font-weight: 700;
+        }
+
+        .section-header-box h2 {
+            font-size: 32px;
+            margin-top: 6px;
+            color: #fff;
+        }
+
+        .five-slide-row {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            padding-bottom: 15px;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: thin;
+            scrollbar-color: #ff3333 #1a1a1a;
+        }
+
+        .five-slide-row::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .five-slide-row::-webkit-scrollbar-thumb {
+            background: #ff3333;
+            border-radius: 3px;
+        }
+
+        .five-slide-item {
+            flex: 0 0 280px;
+            height: 380px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #222;
+            background: #000;
+            scroll-snap-align: start;
+        }
+
+        .five-slide-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* 3. Third: Video Section */
+        .video-showcase-section {
+            padding: 80px 20px;
+            background: #0e0e0e;
+            border-bottom: 1px solid #1a1a1a;
+        }
+
+        .video-showcase-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .factory-video-box {
+            width: 100%;
+            height: 520px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #222;
+            background: #000;
+            margin-top: 30px;
+        }
+
+        .factory-video-box video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @media (max-width: 768px) {
+            .factory-video-box {
+                height: 300px;
+            }
+        }
+
+        /* 4. Fourth: What We Offer */
+        .what-we-offer-section {
+            padding: 80px 20px;
+            background: #0b0b0b;
+        }
+
+        .what-we-offer-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .offer-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            margin-top: 30px;
+        }
+
+        .offer-list li {
+            background: #141414;
+            padding: 22px 25px;
+            border-radius: 6px;
+            border: 1px solid #222;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: #ddd;
+        }
+
+        .offer-list li i {
+            color: #ff3333;
+            font-size: 20px;
+        }
+
+        /* GALLERY PAGE STYLES (Purely Dynamic from product.js - No Prices, No MOQ) */
+        .gallery-page-view {
+            padding: 60px 40px;
+            background: #111;
+            min-height: 100vh;
+        }
+
+        .gallery-layout {
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .khaore-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .khaore-card {
+            background: #141414;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #222;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s ease, border-color 0.2s;
+        }
+
+        .khaore-card:hover {
+            transform: translateY(-5px);
+            border-color: #ff3333;
+        }
+
+        .khaore-img-wrap {
+            width: 100%;
+            aspect-ratio: 1/1;
+            overflow: hidden;
+            background: #000;
+            cursor: pointer;
+        }
+
+        .khaore-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s;
+        }
+
+        .khaore-card:hover .khaore-img-wrap img {
+            transform: scale(1.05);
+        }
+
+        .product-card-info {
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            border-top: 1px solid #222;
+            background: #141414;
+        }
+
+        .btn-card-wa {
+            background: #25d366;
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .btn-card-wa:hover {
+            background: #1ebe5d;
+        }
+
+        /* WHY TRUST US PAGE STYLES */
+        .trust-page-view {
+            padding: 60px 40px;
+            background: #0b0b0b;
+            min-height: 100vh;
+        }
+
+        .trust-layout {
+            max-width: 1300px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .trust-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: stretch;
+            margin-top: 30px;
+        }
+
+        @media (max-width: 900px) {
+            .trust-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .trust-box {
+            background: #141414;
+            padding: 40px;
+            border-radius: 8px;
+            border: 1px solid #222;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .trust-box h3 {
+            font-size: 22px;
+            color: #fff;
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+            border-left: 3px solid #ff3333;
+            padding-left: 12px;
+        }
+
+        .trust-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .trust-list li {
+            font-size: 16px;
+            color: #ccc;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            line-height: 1.5;
+        }
+
+        .trust-list li i {
+            color: #25d366;
+            font-size: 18px;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 3000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: #151515;
+            border: 1px solid #333;
+            border-radius: 8px;
+            max-width: 600px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 30px;
+            color: #fff;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .modal-body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-img-wrap {
+            width: 100%;
+            max-height: 400px;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-img-wrap img {
+            max-width: 100%;
+            max-height: 400px;
+            object-fit: contain;
+        }
+
+        .modal-info {
+            padding: 25px;
+            text-align: center;
+        }
+
+        .modal-info h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .modal-btn {
+            display: inline-block;
+            background: #25d366;
+            color: #fff;
+            padding: 12px 25px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 700;
+            letter-spacing: 1px;
+            transition: background 0.3s;
+        }
+
+        .modal-btn:hover {
+            background: #1ebe5d;
+        }
+
+        /* Footer */
+        .footer {
+            background: #000;
+            border-top: 1px solid #222;
+            padding: 60px 20px 30px;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 30px;
+        }
+
+        .footer-brand h3 {
+            font-size: 22px;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .footer-brand p {
+            color: #888;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .footer-social-block h4 {
+            font-size: 13px;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            color: #aaa;
+        }
+
+        .footer-social-links {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 4px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .social-btn.instagram { background: #e1306c; }
+        .social-btn.tiktok { background: #000; border: 1px solid #333; }
+        .social-btn.whatsapp { background: #25d366; }
+
+        .footer-copy {
+            border-top: 1px solid #1a1a1a;
+            width: 100%;
+            padding-top: 20px;
+            color: #555;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="nav-container">
+            <a onclick="switchPage('home')" class="brand-logo">BRANDIT<span>.</span></a>
+            <nav class="nav-links">
+                <a onclick="switchPage('home')" id="nav-home" class="active-link">HOME & SETUP</a>
+                <a onclick="switchPage('catalog')" id="nav-catalog">GALLERY</a>
+                <a onclick="switchPage('trust')" id="nav-trust">WHY TRUST US</a>
+            </nav>
+            <div class="nav-actions">
+                <div class="nav-socials">
+                    <a href="https://instagram.com/@brandit.marketplace" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://tiktok.com/@brandit.marketplace" target="_blank" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="https://wa.me/2349165920402" target="_blank" aria-label="WhatsApp" class="whatsapp-icon"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+                <a href="https://wa.me/2349165920402" class="btn-direct-wa" target="_blank">ORDER NOW</a>
+                <button class="mobile-menu-btn" onclick="toggleKhaoreMenu()"><i class="fa-solid fa-bars"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <div id="khaore-menu" class="khaore-menu-overlay">
+        <div class="khaore-menu-top">
+            <a onclick="switchPage('home'); toggleKhaoreMenu();" class="brand-logo">BRANDIT<span>.</span></a>
+            <button class="khaore-menu-close" onclick="toggleKhaoreMenu()">&times;</button>
+        </div>
+        <div class="khaore-menu-links">
+            <a onclick="switchPage('home'); toggleKhaoreMenu();">HOME & SETUP <i class="fa-solid fa-chevron-right" style="font-size: 16px;"></i></a>
+            <a onclick="switchPage('catalog'); toggleKhaoreMenu();">GALLERY <i class="fa-solid fa-chevron-right" style="font-size: 16px;"></i></a>
+            <a onclick="switchPage('trust'); toggleKhaoreMenu();">WHY TRUST US <i class="fa-solid fa-chevron-right" style="font-size: 16px;"></i></a>
+        </div>
+        <div class="khaore-menu-footer">
+            <span>Nigeria (USD / NGN)</span>
+            <a href="https://wa.me/2349165920402" target="_blank" style="color: #25d366; text-decoration: none; font-weight: 700;">CHAT ON WHATSAPP</a>
+        </div>
+    </div>
+
+    <div id="page-home" class="page-view active-page">
+        <div class="home-container">
+            
+            <section class="khaore-hero">
+                <div class="hero-slideshow" id="hero-slideshow">
+                    <div class="hero-slide active">
+                        <img src="hero4.jpg" alt="Acid Wash Collection">
+                        <div class="hero-caption">
+                            <span class="caption-tag">WHAT WE PRODUCE</span>
+                            <h2>ACID WASH COLLECTION</h2>
+                        </div>
+                    </div>
+                    <div class="hero-slide">
+                        <img src="hero8.jpg" alt="Flared Denim and Jorts">
+                        <div class="hero-caption">
+                            <span class="caption-tag">FACTORY DIRECT</span>
+                            <h2>FLARED DENIM & JORTS</h2>
+                        </div>
+                    </div>
+                    <div class="hero-slide">
+                        <img src="hero5.jpg" alt="Streetwear Blanks">
+                        <div class="hero-caption">
+                            <span class="caption-tag">HEAVYWEIGHT TERRY</span>
+                            <h2>STREETWEAR BLANKS</h2>
+                        </div>
+                    </div>
+                    <div class="hero-slide">
+                        <img src="hero9.jpg" alt="Custom Trucker Caps">
+                        <div class="hero-caption">
+                            <span class="caption-tag">HEADWEAR HUB</span>
+                            <h2>CUSTOM TRUCKER CAPS</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-indicators">
+                    <span class="ind-dot active" onclick="goToHeroSlide(0)"></span>
+                    <span class="ind-dot" onclick="goToHeroSlide(1)"></span>
+                    <span class="ind-dot" onclick="goToHeroSlide(2)"></span>
+                    <span class="ind-dot" onclick="goToHeroSlide(3)"></span>
+                </div>
+            </section>
+
+            <section class="five-slide-section">
+                <div class="five-slide-container">
+                    <div class="section-header-box">
+                        <span class="section-tag">BRAND SHOWCASE</span>
+                        <h2>WHAT BRANDIT CAN PRODUCE FOR YOUR BRAND</h2>
+                    </div>
+                    <div class="five-slide-row">
+                        <div class="five-slide-item"><img src="hero12.jpg" alt="Brand Shoot 1"></div>
+                        <div class="five-slide-item"><img src="hero13.jpg" alt="Brand Shoot 2"></div>
+                        <div class="five-slide-item"><img src="hero14.jpg" alt="Brand Shoot 3"></div>
+                        <div class="five-slide-item"><img src="hero15.jpg" alt="Brand Shoot 4"></div>
+                        <div class="five-slide-item"><img src="hero16.jpg" alt="Brand Shoot 5"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="video-showcase-section">
+                <div class="video-showcase-container">
+                    <div class="section-header-box">
+                        <span class="section-tag">PHYSICAL WORKSPACE</span>
+                        <h2>LIVE OJUELEGBA FACTORY FLOOR</h2>
+                        <p>Equipped with state-of-the-art machines and production setups running live at 32 Western Ave.</p>
+                    </div>
+                    <div class="factory-video-box">
+                        <video autoplay muted loop playsinline>
+                            <source src="video.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+            </section>
+
+            <section class="what-we-offer-section">
+                <div class="what-we-offer-container">
+                    <div class="section-header-box">
+                        <span class="section-tag">OUR SERVICES</span>
+                        <h2>WHAT WE OFFER</h2>
+                    </div>
+                    <ul class="offer-list">
+                        <li><i class="fa-solid fa-check"></i> High-quality Plain & Acid Wash T-Shirts</li>
+                        <li><i class="fa-solid fa-check"></i> Custom Face Caps, Baseball & Trucker Hats</li>
+                        <li><i class="fa-solid fa-check"></i> Premium Denim Long Pants, Jorts & Shorts</li>
+                        <li><i class="fa-solid fa-check"></i> Custom Made Slides & Branded Socks</li>
+                        <li><i class="fa-solid fa-check"></i> Gym Wears, Tank Tops & Jersey Samples</li>
+                    </ul>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <div id="page-catalog" class="page-view gallery-page-view">
+        <div class="gallery-layout">
+            <div class="section-header-box">
+                <span class="section-tag">PRODUCT GALLERY</span>
+                <h2>EXPLORE OUR LATEST DESIGNS & PRODUCTS</h2>
+                <p>Tap any image to view details and order directly via WhatsApp</p>
+            </div>
+            <div id="product-grid" class="khaore-grid"></div>
+        </div>
+    </div>
+
+    <div id="page-trust" class="page-view trust-page-view">
+        <div class="trust-layout">
+            <div class="section-header-box">
+                <span class="section-tag">RELIABILITY & LOCATION</span>
+                <h2>WHY TOP CLOTHING BRANDS TRUST US</h2>
+                <p>Your secure manufacturing partner right in the heart of Lagos, built to eliminate online transaction doubts.</p>
+            </div>
+            <div class="trust-grid">
+                <div class="trust-box">
+                    <h3>OUR COMMITMENT</h3>
+                    <ul class="trust-list">
+                        <li><i class="fa-solid fa-shield-halved"></i> Trusted manufacturing partner for over 300+ thriving clothing brands</li>
+                        <li><i class="fa-solid fa-location-dot"></i> Physical office & factory located at 32 Western Ave, Ojuelegba, Lagos</li>
+                        <li><i class="fa-solid fa-bolt"></i> Direct factory production ensuring top-tier clothing quality standards</li>
+                    </ul>
+                </div>
+                <div class="trust-box">
+                    <h3>WALK-IN & SERVICES</h3>
+                    <ul class="trust-list">
+                        <li><i class="fa-solid fa-clock"></i> Open Mon–Sat for walk-in fabric testing & physical consultations</li>
+                        <li><i class="fa-solid fa-headset"></i> Reliable customer support and direct communication via WhatsApp</li>
+                        <li><i class="fa-solid fa-photo-film"></i> Production studio blocks available to rent for clothing line drops</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="product-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <div class="modal-body">
+                <div class="modal-img-wrap">
+                    <img id="modal-img" src="" alt="Product Detail">
+                </div>
+                <div class="modal-info">
+                    <h3 id="modal-title">BRANDIT LAGOS</h3>
+                    <a id="modal-wa-btn" href="#" target="_blank" class="modal-btn"><i class="fa-brands fa-whatsapp"></i> ORDER VIA WHATSAPP</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <h3>BRANDIT LAGOS</h3>
+                <p>32 Western Avenue, Ojuelegba, Lagos, Nigeria.</p>
+                <p>Bulk Manufacturing & Streetwear Hub</p>
+            </div>
+            <div class="footer-social-block">
+                <h4>FOLLOW US ON SOCIALS</h4>
+                <div class="footer-social-links">
+                    <a href="https://instagram.com/@brandit.marketplace" target="_blank" class="social-btn instagram"><i class="fa-brands fa-instagram"></i> Instagram</a>
+                    <a href="https://tiktok.com/@brandit.marketplace" target="_blank" class="social-btn tiktok"><i class="fa-brands fa-tiktok"></i> TikTok</a>
+                    <a href="https://wa.me/2349165920402" target="_blank" class="social-btn whatsapp"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+                </div>
+            </div>
+            <div class="footer-copy">
+                <p>&copy; 2026 BRANDIT MARKETPLACE. ALL RIGHTS RESERVED.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="product.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            initHeroSlider();
+            initProductGrid();
+        });
+
+        // MULTI-PAGE VIEW SWITCHING LOGIC
+        function switchPage(pageId) {
+            document.querySelectorAll('.page-view').forEach(page => {
+                page.classList.remove('active-page');
+            });
+
+            const targetPage = document.getElementById('page-' + pageId);
+            if (targetPage) {
+                targetPage.classList.add('active-page');
+            }
+
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.classList.remove('active-link');
+            });
+            const activeNavLink = document.getElementById('nav-' + pageId);
+            if (activeNavLink) {
+                activeNavLink.classList.add('active-link');
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleKhaoreMenu() {
+            const menu = document.getElementById('khaore-menu');
+            menu.classList.toggle('open');
+        }
+
+        // HERO SLIDESHOW 
+        let currentHeroSlide = 0;
+        function initHeroSlider() {
+            const slides = document.querySelectorAll('.hero-slide');
+            const dots = document.querySelectorAll('.ind-dot');
+            if (slides.length === 0) return;
+
+            setInterval(() => {
+                slides[currentHeroSlide].classList.remove('active');
+                dots[currentHeroSlide].classList.remove('active');
+                currentHeroSlide = (currentHeroSlide + 1) % slides.length;
+                slides[currentHeroSlide].classList.add('active');
+                dots[currentHeroSlide].classList.add('active');
+            }, 4000);
+        }
+
+        function goToHeroSlide(index) {
+            const slides = document.querySelectorAll('.hero-slide');
+            const dots = document.querySelectorAll('.ind-dot');
+            if (slides.length === 0) return;
+
+            slides[currentHeroSlide].classList.remove('active');
+            dots[currentHeroSlide].classList.remove('active');
+            currentHeroSlide = index;
+            slides[currentHeroSlide].classList.add('active');
+            dots[currentHeroSlide].classList.add('active');
+        }
+
+        // RENDER DYNAMIC PRODUCTS FROM product.js (NO PRICES, NO MOQ)
+        function initProductGrid() {
+            const grid = document.getElementById("product-grid");
+            if (!grid) return;
+            
+            if (typeof branditProducts === "undefined") {
+                console.error("branditProducts is not defined. Check if product.js is linked correctly.");
+                return;
+            }
+
+            grid.innerHTML = "";
+
+            branditProducts.forEach(product => {
+                const card = document.createElement("div");
+                card.className = "khaore-card";
+
+                const encodedMessage = encodeURIComponent(`Hi Brandit Lagos, I'm interested in ordering this item: *${product.name}*`);
+                const whatsappLink = `https://wa.me/2349165920402?text=${encodedMessage}`;
+
+                card.innerHTML = `
+                    <div class="khaore-img-wrap">
+                        <img src="${product.image}" alt="${product.name}" loading="lazy">
+                    </div>
+                    <div class="product-card-info">
+                        <a href="${whatsappLink}" target="_blank" class="btn-card-wa"><i class="fa-brands fa-whatsapp"></i> Order on WhatsApp</a>
+                    </div>
+                `;
+
+                card.querySelector('.khaore-img-wrap').addEventListener("click", () => {
+                    openModal(product);
+                });
+
+                grid.appendChild(card);
+            });
+        }
+
+        // MODAL & WHATSAPP
+        function openModal(product) {
+            const modal = document.getElementById("product-modal");
+            const modalImg = document.getElementById("modal-img");
+            const modalTitle = document.getElementById("modal-title");
+            const waBtn = document.getElementById("modal-wa-btn");
+
+            if (!modal) return;
+
+            modalImg.src = product.image;
+            modalTitle.textContent = product.name;
+            modal.style.display = "flex";
+
+            const encodedMessage = encodeURIComponent(`Hi Brandit Lagos, I'm interested in ordering this item: *${product.name}*`);
+            waBtn.href = `https://wa.me/2349165920402?text=${encodedMessage}`;
+        }
+
+        function closeModal() {
+            const modal = document.getElementById("product-modal");
+            if (modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        window.addEventListener("click", (event) => {
+            const modal = document.getElementById("product-modal");
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
